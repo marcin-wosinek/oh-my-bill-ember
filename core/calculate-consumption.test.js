@@ -1,6 +1,7 @@
+import { calculateConsumption } from "./calculate-consumption";
+
 import { Measurement } from "./measurement";
 import { Tariff } from "./tariff";
-import { calculateConsumption } from "./calculate-consumption";
 
 import { endOfHour, parseISO } from "date-fns";
 
