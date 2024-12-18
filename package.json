@@ -1,0 +1,19 @@
+{
+  "name": "oh-my-bill",
+  "version": "1.0.0",
+  "description": "Simple appliction to caculate energy costs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/marcin-wosinek/oh-my-bill.git"
+  },
+  "author": "Marcin Wosinek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcin-wosinek/oh-my-bill/issues"
+  },
+  "homepage": "https://github.com/marcin-wosinek/oh-my-bill#readme"
+}
