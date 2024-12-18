@@ -1,7 +1,7 @@
 /**
  * Stores energy meter measurement, registered by the user.
  */
-export class Measurment {
+export class Measurement {
   /**
    * Point in time when the energy measurement was taken.
    */

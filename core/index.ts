@@ -1,5 +1,5 @@
 import { Consumption } from "./consumption";
-import { Measurment } from "./measurement";
+import { Measurement } from "./measurement";
 import { Tariff } from "./tariff";
 
-export { Consumption, Measurment, Tariff };
+export { Consumption, Measurement, Tariff };
