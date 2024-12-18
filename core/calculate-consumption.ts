@@ -1,4 +1,4 @@
-import { addHours, differenceInHours, startOfHour } from "date-fns";
+import { addHours, compareAsc, differenceInHours, startOfHour } from "date-fns";
 import { range } from "lodash";
 
 import { Consumption } from "./consumption";
@@ -13,9 +13,10 @@ export function calculateConsumption(
   measurements: Measurement[]
 ): Consumption[] {
   if (measurements && measurements.length > 1) {
-    const orderedMeasurments = measurements.sort(
-      (a, b) => a.datetime - b.datetime
-    );
+    const orderedMeasurments = measurements.sort((a, b) =>
+        compareAsc(a.datetime, b.datetime)
+      ),
+      hourlyFixedCharge = tariff.fixedCharge / 24;
 
     const firstHour = startOfHour(orderedMeasurments[0].datetime),
       lastHour = startOfHour(orderedMeasurments.at(-1).datetime);
@@ -23,7 +24,7 @@ export function calculateConsumption(
     const consumptionArraySize = differenceInHours(lastHour, firstHour) + 1;
 
     const t = range(0, consumptionArraySize).map((n) => {
-      return new Consumption(addHours(firstHour, n));
+      return new Consumption(addHours(firstHour, n), hourlyFixedCharge);
     });
 
     return t;

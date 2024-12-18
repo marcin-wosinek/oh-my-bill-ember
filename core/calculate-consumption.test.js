@@ -53,6 +53,40 @@ describe("calculateConsumption", () => {
     expect(result[2].cost).toBe(0);
   });
 
+  test("should return one empty cost for 2 expect measurements & flat charge of 24 per day", () => {
+    const tariff = new Tariff(24, 1),
+      startTime = parseISO("2024-12-18T16:00:00"),
+      endTime = endOfHour(startTime);
+
+    const result = calculateConsumption(tariff, [
+      new Measurement(startTime, 5),
+      new Measurement(endTime, 5),
+    ]);
+
+    expect(result).toHaveLength(1);
+    expect(result[0].datetime).toStrictEqual(startTime);
+    expect(result[0].cost).toBe(1);
+  });
+
+  test("should return four empty cost for 2 expect measurements & fixed charge of 1 per hour", () => {
+    const tariff = new Tariff(24, 1),
+      startTime = parseISO("2024-12-18T16:00:00"),
+      endTime = parseISO("2024-12-18T18:00:00");
+
+    const result = calculateConsumption(tariff, [
+      new Measurement(startTime, 5),
+      new Measurement(endTime, 5),
+    ]);
+
+    expect(result).toHaveLength(3);
+    expect(result[0].datetime).toStrictEqual(startTime);
+    expect(result[0].cost).toBe(1);
+    expect(result[1].datetime).toStrictEqual(parseISO("2024-12-18T17:00:00"));
+    expect(result[1].cost).toBe(1);
+    expect(result[2].datetime).toStrictEqual(parseISO("2024-12-18T18:00:00"));
+    expect(result[2].cost).toBe(1);
+  });
+
   test.skip("should calculate cost for 2 measurement at start and end of an hour", () => {
     const tariff = new Tariff(24, 1),
       startTime = parseISO("2024-12-18T16:00:00"),
