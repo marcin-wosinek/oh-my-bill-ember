@@ -1,6 +1,6 @@
 import { Measurement } from "./measurement";
 
-import { isDate } from "date-fns";
+import { isDate, differenceInSeconds } from "date-fns";
 
 /**
  * Method that takes two measurements, and interpolate the value at another
@@ -24,9 +24,11 @@ export function interpolateValue(
   }
 
   const valueDifference = endMeasurement.value - startMeasurement.value,
-    measurementTimeDifference =
-      endMeasurement.datetime - startMeasurement.datetime,
-    timeDifference = time - startMeasurement.datetime;
+    measurementTimeDifference = differenceInSeconds(
+      endMeasurement.datetime,
+      startMeasurement.datetime
+    ),
+    timeDifference = differenceInSeconds(time, startMeasurement.datetime);
 
   return (
     (valueDifference * timeDifference) / measurementTimeDifference +
