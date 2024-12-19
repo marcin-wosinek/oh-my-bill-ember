@@ -1,6 +1,6 @@
 import { Measurement } from "./measurement";
 
-import { isDate, differenceInMinutes } from "date-fns";
+import { isDate } from "date-fns";
 
 /**
  * Method that takes two measurements, and interpolate the value at another

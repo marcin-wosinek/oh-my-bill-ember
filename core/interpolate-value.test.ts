@@ -2,7 +2,7 @@ import { interpolateValue } from "./interpolate-value";
 
 import { Measurement } from "./measurement";
 
-import { endOfHour, parseISO } from "date-fns";
+import { parseISO } from "date-fns";
 
 describe("interpolateValue", () => {
   test("should return 0 when both measurements are missing", () => {
